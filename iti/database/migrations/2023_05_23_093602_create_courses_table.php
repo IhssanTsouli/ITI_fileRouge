@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
+ // $table->foreignIdFor(User::class, 'teacher_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+ // $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 return new class extends Migration
 {
     /**
@@ -22,15 +23,12 @@ return new class extends Migration
             $table->longText('summary')->nullable();
             $table->longText('requirement')->nullable();
             $table->integer('price')->default(0);
-            // $table->foreignIdFor(User::class, 'teacher_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->bigInteger("User_id")->unsigned()->nullable();
-            $table->foreign("User_id")
+            $table->bigInteger("user_id")->unsigned()->nullable();
+            $table->foreign("user_id")
             ->references("id")
             ->on('users')
-            ->onDelete('cascade');
-            
-            $table->string('category');
-            // $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            ->onDelete('cascade');  
+            $table->string('category');  
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();
             $table->string('duration')->nullable();

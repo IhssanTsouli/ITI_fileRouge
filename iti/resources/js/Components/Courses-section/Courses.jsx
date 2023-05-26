@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import courseImg1 from "../../assests/images/web-design.png";
 import courseImg2 from "../../assests/images/graphics-design.png";
 import courseImg3 from "../../assests/images/ui-ux.png";
 import "./courses.css";
 import CourseCard from "./CourseCard";
+import axios from "axios";
 
 const coursesData = [
   {
@@ -36,6 +37,17 @@ const coursesData = [
 ];
 
 const Courses = () => {
+  const [data,setData]=useState([]);
+  const handeleafficher=()=>{
+    axios.get('http://127.0.0.1:8000/api/getdatacours').then(res=>{
+      setData(res.data);
+      console.log(res.data);
+    })
+  }
+  useEffect(()=>{
+    handeleafficher();
+    
+  },[]);
   return (
     <section>
       <Container>
@@ -56,9 +68,9 @@ const Courses = () => {
               </div>
             </div>
           </Col>
-          {coursesData.map((item) => (
+          {data.map((item) => (
             <Col lg="4" md="6" sm="6">
-              <CourseCard key={item.id} item={item} />
+              <CourseCard key={item.id} cour={item} />
             </Col>
           ))}
         </Row>

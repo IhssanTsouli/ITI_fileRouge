@@ -15,7 +15,7 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'code', 'slug', 'description', 'summary', 'requirement', 'teacher_id', 'category_id', 'status', 'price', 'duration', 'started_at', 'finished_at', 'image'];
+    protected $fillable = ['name', 'code', 'slug', 'description', 'summary', 'requirement', 'user_id', 'category', 'status', 'price', 'duration', 'started_at', 'finished_at', 'image'];
 
 
     protected $casts = ['started_at' => 'datetime', 'finished_at' => 'datetime'];

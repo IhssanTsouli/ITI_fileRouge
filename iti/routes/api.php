@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('index',[CourseController::class,'index'])->name('index');
+Route::get('getdatacours',[CourseController::class,'index'])->name('getdatacours');
